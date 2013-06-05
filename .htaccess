@@ -16,7 +16,10 @@
 ##
 
 ## Can be commented out if causes errors, see notes above.
+
+
 Options +FollowSymLinks
+
 
 ## Mod_rewrite in use.
 
@@ -75,8 +78,14 @@ RewriteRule .* index.php [L]
 #
 ## End - Joomla! core SEF Section.
 
-
-
-
-
 php_value display_errors 1
+
+
+<IfModule mod_rewrite>
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.php [L]
+</IfModule>
+
